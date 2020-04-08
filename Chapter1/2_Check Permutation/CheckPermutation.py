@@ -4,7 +4,12 @@ from collections import Counter
 
 
 def check_permutation(str1, str2):
-    pass
+    str1 = sorted(str1)
+    str2 = sorted(str2)
+    if str1 == str2:
+        return True
+    else:
+        return False
 
 class Test(unittest.TestCase):
     dataT = (
