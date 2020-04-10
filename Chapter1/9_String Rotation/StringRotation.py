@@ -2,7 +2,14 @@
 import unittest
 
 def string_rotation(s1, s2):
-    pass
+    for i in range(len(s1)):
+        top = s1[0:1]
+        s1 = s1[1:]
+        s1 += top
+        if s1 == s2:
+            return True
+    return False
+
 
 
 class Test(unittest.TestCase):
