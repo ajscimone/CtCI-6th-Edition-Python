@@ -6,10 +6,7 @@ from collections import Counter
 def check_permutation(str1, str2):
     str1 = sorted(str1)
     str2 = sorted(str2)
-    if str1 == str2:
-        return True
-    else:
-        return False
+    return str1==str2
 
 class Test(unittest.TestCase):
     dataT = (
