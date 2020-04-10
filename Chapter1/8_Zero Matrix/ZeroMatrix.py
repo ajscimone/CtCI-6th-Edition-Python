@@ -1,9 +1,18 @@
 # O(MxN)
 import unittest
-
+import copy
 
 def zero_matrix(matrix):
-    pass
+    new_matrix = copy.deepcopy(matrix)
+    for i in range(len(matrix)):
+        for j in range(len(matrix[0])):
+            if matrix[i][j] == 0:
+                new_row = [0 for x in range(len(matrix[0]))]
+                new_matrix[i] = new_row
+                for y in range(len(matrix)):
+                    new_matrix[y][j] = 0
+    return new_matrix
+
 
 class Test(unittest.TestCase):
     '''Test Cases'''
