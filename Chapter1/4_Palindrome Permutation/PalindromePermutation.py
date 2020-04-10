@@ -4,7 +4,20 @@ import unittest
 
 def pal_perm(phrase):
     '''function checks if a string is a permutation of a palindrome or not'''
-    pass
+    phrase=sorted(phrase.lower())
+    while phrase[0] == ' ':
+        phrase.pop(0)
+    stack = []
+    for l in phrase:
+        if not stack:
+            stack.append(l)
+        elif stack[len(stack)-1] == l:
+            stack.pop()
+        else:
+            stack.append(l)
+    if len(stack) > 1:
+        return False
+    return True
 
 class Test(unittest.TestCase):
     '''Test Cases'''
