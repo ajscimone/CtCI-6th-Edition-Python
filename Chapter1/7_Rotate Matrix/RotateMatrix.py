@@ -1,17 +1,38 @@
 # O(NxN)
 import unittest
 
+# Example turn in place:
+    # [0][0]-> [0][4] -> [4][4] ->[4][0] -> [0][0]
+    # [0][1]-> [1][4] -> [4][3] ->[3][0] -> [0][1]
+    # [0][2]-> [2][4] -> [4][2] ->[2][0] -> [0][2]
+    # [0][3]-> [3][4] -> [4][1] ->[1][0] -> [0][3]
+    # [0][4]-> [4][4] -> [4][0] ->[0][0] -> [0][4]
+
+    # [1][1]-> [1][3] -> [3][3] ->[3][1] -> [1][1]
+    # [1][2]-> [2][3] -> [3][2] ->[2][1] -> [1][2]
+    # [1][2]-> [2][3] -> [3][2] ->[2][1] -> [1][2]
 
 def rotate_matrix(matrix):
     '''rotates a matrix 90 degrees clockwise'''
-    x_len = len(matrix)
-    y_len = len(matrix[0])
-    result = [[0 for x in range(x_len)] for x in range(y_len)] 
-    for i in range(y_len):
-        for j in range(x_len):
-            #result[4][0...5] = matrix[0...5][0]
-            result[j][i] = matrix[y_len-1-i][j]
-    return result
+    x_len = len(matrix)-1
+    y_len = len(matrix[0])-1
+
+    i_range = int(len(matrix)/2)
+    j_range = int(len(matrix[0])/2) + len(matrix[0])%2
+
+    for i in range(i_range):
+        for j in range(j_range):
+            temp = matrix[j][y_len-i]
+            matrix[j][y_len-i] = matrix[i][j]
+
+            temp2 = matrix[y_len-i][x_len-j]
+            matrix[y_len-i][x_len-j]=temp
+
+            temp3 =matrix[x_len-j][i]
+            matrix[x_len-j][i] = temp2
+
+            matrix[i][j] = temp3
+    return matrix
 
 class Test(unittest.TestCase):
     '''Test Cases'''
