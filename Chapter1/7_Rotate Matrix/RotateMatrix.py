@@ -4,7 +4,14 @@ import unittest
 
 def rotate_matrix(matrix):
     '''rotates a matrix 90 degrees clockwise'''
-    pass
+    x_len = len(matrix)
+    y_len = len(matrix[0])
+    result = [[0 for x in range(x_len)] for x in range(y_len)] 
+    for i in range(y_len):
+        for j in range(x_len):
+            #result[4][0...5] = matrix[0...5][0]
+            result[j][i] = matrix[y_len-1-i][j]
+    return result
 
 class Test(unittest.TestCase):
     '''Test Cases'''
