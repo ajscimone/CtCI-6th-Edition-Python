@@ -3,7 +3,23 @@ import unittest
 
 
 def string_compression(string):
-    pass
+    prev = string[0]
+    count = 1
+    result = ""
+    flag = False
+    for i in range(1, len(string)):
+        if string[i] == prev:
+            if flag == False:
+                flag = True
+            count +=1
+        else:
+            result = result + prev + str(count)
+            prev = string[i]
+            count = 1
+    result = result + prev + str(count)
+    if flag == False:
+        return string
+    return result
 
 
 class Test(unittest.TestCase):
