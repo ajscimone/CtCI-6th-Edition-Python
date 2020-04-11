@@ -10,8 +10,6 @@ def string_rotation(s1, s2):
             return True
     return False
 
-
-
 class Test(unittest.TestCase):
     '''Test Cases'''
     data = [

@@ -1,10 +1,33 @@
 # O(N)
 import unittest
-
+import string
 
 def one_away(s1, s2):
     '''Check if a string can converted to another string with a single edit'''
-    pass
+    if not s1 and len(s2)==1:
+        return True
+    elif len(s1) == 1 and len(s2) == 1:
+        return True
+    elif s1[:-1] == s2 or s1 == s2[:-1]:
+        return True
+    elif s1 == s2:
+        return True
+
+    alphabet = list(string.ascii_lowercase)
+    for i in range(len(s1)):
+        if i < len(s2) and s1[i] != s2[i]:
+            for letter in alphabet:
+                #inert
+                if s1[:i] + letter + s1[i:] == s2:
+                    return True
+                #replace
+                if s1[:i] + letter + s1[i+1:] == s2:
+                    return True
+            #remove
+            if s1[:i-1] + s1[i:] == s2:
+                return True
+    return False
+    
 
 class Test(unittest.TestCase):
     '''Test Cases'''
