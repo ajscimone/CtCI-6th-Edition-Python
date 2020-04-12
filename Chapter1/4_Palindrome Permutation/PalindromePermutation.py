@@ -1,7 +1,7 @@
 # O(N)
 import unittest
 
-
+#O(N logN)
 def pal_perm(phrase):
     '''function checks if a string is a permutation of a palindrome or not'''
     phrase=sorted(phrase.lower())
@@ -19,6 +19,24 @@ def pal_perm(phrase):
         return False
     return True
 
+def pal_perm_fast(phrase):
+    '''function checks if a string is a permutation of a palindrome or not'''
+    seen = {}
+    phrase = phrase.replace(' ', '')
+    for letter in phrase.lower():
+        if letter in seen:
+            seen[letter]+=1
+        else:
+            seen[letter] = 1
+    flag = False
+    for key in seen.keys():
+        if seen[key] % 2 > 0:
+            if flag == True:
+                return False
+            else:
+                flag = True
+    return True
+
 class Test(unittest.TestCase):
     '''Test Cases'''
     data = [
@@ -33,7 +51,7 @@ class Test(unittest.TestCase):
 
     def test_pal_perm(self):
         for [test_string, expected] in self.data:
-            actual = pal_perm(test_string)
+            actual = pal_perm_fast(test_string)
             self.assertEqual(actual, expected)
 
 if __name__ == "__main__":
