@@ -8,6 +8,21 @@ def check_permutation(str1, str2):
     str2 = sorted(str2)
     return str1==str2
 
+def check_permutation_faster(str1, str2):
+    if len(str1) > len(str2):
+        stack = list(str1)
+        for letter in str2:
+            if letter in stack:
+                stack.remove(letter)
+    else:
+        stack = list(str2)
+        for letter in str1:
+            if letter in stack:
+                stack.remove(letter)
+    if len(stack)==0:
+        return True
+    return False
+
 class Test(unittest.TestCase):
     dataT = (
         ('abcd', 'bacd'),
@@ -23,11 +38,11 @@ class Test(unittest.TestCase):
     def test_cp(self):
         # true check
         for test_strings in self.dataT:
-            result = check_permutation(*test_strings)
+            result = check_permutation_faster(*test_strings)
             self.assertTrue(result)
         # false check
         for test_strings in self.dataF:
-            result = check_permutation(*test_strings)
+            result = check_permutation_faster(*test_strings)
             self.assertFalse(result)
 
 
