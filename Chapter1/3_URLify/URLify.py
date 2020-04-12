@@ -1,16 +1,13 @@
 # O(N)
 import unittest
 
-
 def urlify(string, length):
     '''function replaces single spaces with %20 and removes trailing spaces'''
-    full_string = ""
     while string[-1] == ' ':
         string.pop()
-    for l in string:
-        full_string += l
-    full_string = full_string.replace(' ', "%20")
-    return list(full_string)
+    string = "".join(string)
+    string = string.replace(' ', "%20")
+    return list(string)
 
 class Test(unittest.TestCase):
     '''Test Cases'''

@@ -9,14 +9,11 @@ def check_permutation(str1, str2):
     return str1==str2
 
 def check_permutation_faster(str1, str2):
-    if len(str1) > len(str2):
+    if len(str1) != len(str2):
+        return False
+    else:
         stack = list(str1)
         for letter in str2:
-            if letter in stack:
-                stack.remove(letter)
-    else:
-        stack = list(str2)
-        for letter in str1:
             if letter in stack:
                 stack.remove(letter)
     if len(stack)==0:
